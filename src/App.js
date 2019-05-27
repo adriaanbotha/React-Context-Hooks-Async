@@ -4,26 +4,26 @@ import React, {
 
 import useCombinedReducers from 'use-combined-reducers';
 import DispatchContext from "./store/dispatch";
-import ArticleList from "./conponents/ArticleList";
-import { fetchAllArticles } from "./store/articlesSelectors";
-import { articleReducer, articleStatusReducer } from "./store/articleReducer";
-import { FETCHING_ARTICLES } from "./store/actionTypes";
+import UserList from "./conponents/UserList";
+import { fetchAllUsers } from "./store/articlesSelectors";
+import { userReducer, userStatusReducer } from "./store/userReducer";
+import { FETCHING_USERS, FETCHED_USERS, ADD_USERS } from "./store/actionTypes";
 
 const App = () => {
   const [state, dispatch] = useCombinedReducers({
-    articles: useReducer(articleReducer, []),
-    articlesStatus: useReducer(articleStatusReducer, FETCHING_ARTICLES)
+    users: useReducer(userReducer, []),
+    usersStatus: useReducer(userStatusReducer, FETCHING_USERS)
   });
 
-  const { articles, articlesStatus } = state;
+  const { users, usersStatus } = state;
 
   useEffect(() => {
-    dispatch({ type: 'FETCHING_ARTICLES' });
+    dispatch({ type: FETCHING_USERS });
 
-    fetchAllArticles()
+    fetchAllUsers()
       .then((data) => {
-        dispatch({ type: 'ADD_ARTICLES', data });
-        dispatch({ type: 'FETCHED_ARTICLES' });
+        dispatch({ type: ADD_USERS, data });
+        dispatch({ type: FETCHED_USERS });
       })
       .catch((error) => {
         console.log('error ->', error);
@@ -33,7 +33,7 @@ const App = () => {
 
   return (
     <DispatchContext.Provider value={dispatch}>
-      <ArticleList articles={articles} articlesStatus={articlesStatus}/>
+      <UserList users={users} usersStatus={usersStatus}/>
     </DispatchContext.Provider>
   );
 };

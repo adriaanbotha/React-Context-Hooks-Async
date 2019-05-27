@@ -1,20 +1,20 @@
 import axios from 'axios';
 import apiURL from '../../src/config/APIUrls';
 
-export const fetchAllArticles = () => {
-    return fetchAllArticlesAsync()
+export const fetchAllUsers = () => {
+    return fetchAllUsersAsync()
       .then((data) => {
-        console.log("Recieved data from NEWS API.......Yay!!!!!!!");
-        return data.data.items;
+        console.log("Recieved data from USERS API.......Yay!!!!!!!", data);
+        return data.data;
       })
       .catch((error) => {
         console.log('error 1->', error);
       });
   };
 
-async function fetchAllArticlesAsync() {
+async function fetchAllUsersAsync() {
   try {
-    const response = await axios.get(apiURL.rss_abc_news_feed);
+    const response = await axios.get(apiURL.users_feed);
     const body = await response;
     return body;
   } catch (error) {

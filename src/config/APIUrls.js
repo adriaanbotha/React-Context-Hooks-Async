@@ -1,5 +1,5 @@
 const APIUrls = {
-  rss_abc_news_feed: `https://api.rss2json.com/v1/api.json?rss_url=http://www.abc.net.au/news/feed/51120/rss.xml`
+  users_feed: `http://dummy.restapiexample.com/api/v1/employees`
 };
 
 export default APIUrls;
