@@ -1,11 +1,11 @@
 ## Description
-Creating a React Context API State manager with a reducer use side effects like a news API
+Creating a React Context API State manager with a useReducer for side effects consuming a News API
 
 ## Motivation
-Based on the article from https://www.robinwieruch.de/react-state-usereducer-usestate-usecontext/?utm_campaign=React%2BNewsletter&utm_medium=email&utm_source=React_Newsletter_162#usecontext-context-hook
+Based on the articles from [React State with Hooks: useReducer, useState, useContext](https://www.robinwieruch.de/react-state-usereducer-usestate-usecontext/?utm_campaign=React%2BNewsletter&utm_medium=email&utm_source=React_Newsletter_162#usecontext-context-hook)
 
 ## Special Thanks
-a Special thanks to [Robin Wieruch](https://www.robinwieruch.de) with the article form above
+a Special thanks to [Robin Wieruch](https://www.robinwieruch.de) with the article from above
 
 
 ##
