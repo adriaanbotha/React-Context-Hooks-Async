@@ -1,43 +1,39 @@
 import React, {
-  useReducer,
+  useReducer, useEffect
 } from 'react';
 
 import useCombinedReducers from 'use-combined-reducers';
-import Filter from "./conponents/Filter";
-import DispatchContext from "./store/Dispatch";
-import TodoList from "./conponents/TodoList";
-import AddTodo from "./conponents/AddTodo";
-import {filterReducer, initialTodos, todoReducer} from "./store/Reducers";
+import DispatchContext from "./store/dispatch";
+import ArticleList from "./conponents/ArticleList";
+import { fetchAllArticles } from "./store/articlesSelectors";
+import { articleReducer, articleStatusReducer } from "./store/articleReducer";
+import { FETCHING_ARTICLES } from "./store/actionTypes";
 
 const App = () => {
   const [state, dispatch] = useCombinedReducers({
-    filter: useReducer(filterReducer, 'ALL'),
-    todos: useReducer(todoReducer, initialTodos),
+    articles: useReducer(articleReducer, []),
+    articlesStatus: useReducer(articleStatusReducer, FETCHING_ARTICLES)
   });
 
-  const { filter, todos } = state;
+  const { articles, articlesStatus } = state;
 
-  const filteredTodos = todos.filter(todo => {
-    if (filter === 'ALL') {
-      return true;
-    }
+  useEffect(() => {
+    dispatch({ type: 'FETCHING_ARTICLES' });
 
-    if (filter === 'COMPLETE' && todo.complete) {
-      return true;
-    }
+    fetchAllArticles()
+      .then((data) => {
+        dispatch({ type: 'ADD_ARTICLES', data });
+        dispatch({ type: 'FETCHED_ARTICLES' });
+      })
+      .catch((error) => {
+        console.log('error ->', error);
+      });
+  }, []);   //This line is IMPORTANT since the [] makes sure it is also called only once !!!!
 
-    if (filter === 'INCOMPLETE' && !todo.complete) {
-      return true;
-    }
-
-    return false;
-  });
 
   return (
     <DispatchContext.Provider value={dispatch}>
-      <Filter />
-      <TodoList todos={filteredTodos} />
-      <AddTodo />
+      <ArticleList articles={articles} articlesStatus={articlesStatus}/>
     </DispatchContext.Provider>
   );
 };
