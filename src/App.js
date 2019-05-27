@@ -1,7 +1,7 @@
 import React, {
   useReducer, useEffect
 } from 'react';
-
+import './App.css';
 import useCombinedReducers from 'use-combined-reducers';
 import DispatchContext from "./store/dispatch";
 import UserList from "./conponents/UserList";

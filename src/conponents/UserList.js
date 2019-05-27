@@ -1,3 +1,4 @@
+import './UserList.css';
 import React from 'react';
 import { FETCHING_USERS } from "../store/actionTypes"
 
@@ -15,16 +16,16 @@ const UserList = ({ users, usersStatus }) => {
   }
 
   return (
-    <div>
-      <label>User Data retrieved !!!</label>
+    <div className="section">
+      <p className="heading">User Data retrieved !!!</p>
       {users && users.map((item, index) => (
-        <ArticleItem key={index} name={item.employee_name} />
+        <UserItem className="userItem"key={index} name={item.employee_name} />
       ))}
     </div>
   )
 };
 
-const ArticleItem = ({ name }) => {
+const UserItem = ({ name }) => {
   return (
     <li>
       <label>
