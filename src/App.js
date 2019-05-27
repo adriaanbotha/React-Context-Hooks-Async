@@ -5,7 +5,7 @@ import './App.css';
 import useCombinedReducers from 'use-combined-reducers';
 import DispatchContext from "./store/dispatch";
 import UserList from "./conponents/UserList";
-import { fetchAllUsers } from "./store/articlesSelectors";
+import { fetchAllUsers } from "./store/usersSelectors";
 import { userReducer, userStatusReducer } from "./store/userReducer";
 import { FETCHING_USERS, FETCHED_USERS, ADD_USERS } from "./store/actionTypes";
 
